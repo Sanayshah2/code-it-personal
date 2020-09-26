@@ -12,8 +12,14 @@ from .decorators import *
 
 # Create your views here.
 def home(request):
-   # group=Group.objects.get(user=request.user)
-    return render(request,'ngo_requirements/home.html')
+   
+    requirements = Requirement.objects.all()
+    context={
+        'requirements':requirements,
+    }
+
+
+    return render(request,'ngo_requirements/home.html',context)
 
 @is_logged
 def register(request):
