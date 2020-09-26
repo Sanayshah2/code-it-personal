@@ -41,7 +41,23 @@
         <!-- <div id="form1"> -->
         <form method="POST">
             {% csrf_token %}
+            <div class="form-group">
+                <label class="control-label" >Requirement type<sup>*</sup></label>
+                <select class="select form-control" name='category' required>
+                    {% for c in categories %}
+                    <option value='{{c.help_category}}'>{{c.help_category}}</option>
+                    {% endfor %}
+    
+                </select>
+
+            </div>
             {{form|crispy}}
+
+
+                
+
+
+
             <button type='submit'>Submit</button>
         </form>
 

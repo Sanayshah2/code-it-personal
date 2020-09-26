@@ -53,10 +53,10 @@ def Login(request):
                 g=group.name
                 if g == 'donor':
                   login(request, user)
-                  return redirect('donordashboard', username = user.username)
+                  return redirect('donorDashboard')
                 else:
                   login(request, user)
-                  return redirect('ngodashboard', username = user.username)
+                  return redirect('ngoDashboard')
             elif user is None:
                 messages.info(request, f'Invalid Credentials.')
     else:
@@ -69,35 +69,46 @@ def logout_view(request):
 
 @login_required
 @donor_required
-def donordashboard(request, username):
+def donorDashboard(request):
    return render(request,"ngo_requirements/donordashboard.html")
 
 
-@login_required
-@ngo_required
-def ngodashboard(request, username):
-   return render(request,"ngo_requirements/ngodashboard.html")
+
 
 
 def addRequirement(request):
-
-    
-    
-      
+    categories= get_all_help_categories()
     if request.method=='POST':
         ngo=Ngo.objects.get(user=request.user)
+        print(ngo)
+        category=request.POST.get('category')
+        print(category)
+        category1=Help_category.objects.get(help_category = category)
+        
         form=AddRequirementForm(request.POST)
         if form.is_valid():
             instance=form.save(commit=False)
+
+            #print(category1)
+            instance.category=category1
+
             instance.ngo=ngo
             instance.save()
-            return redirect('home')
+            return redirect('addRequirement')
         else:
             messages.info(request, f"Error occured.")
     else:
         form=AddRequirementForm()
-    return render(request,'ngo_requirements/addRequirement.html',{'form':form})
+    return render(request,'ngo_requirements/addRequirement.html',{'form':form,'categories':categories})
 
+
+
+@login_required
+@ngo_required
 
 def ngoDashboard(request):
     return render(request,'ngo_requirements/ngo_dashboard.html')
+
+def get_all_help_categories():
+    categories = Help_category.objects.all()
+    return categories

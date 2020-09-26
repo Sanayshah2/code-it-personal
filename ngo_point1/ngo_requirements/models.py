@@ -17,12 +17,19 @@ class Ngo(models.Model):
     def __str__(self):
         return f"{self.user.username}"
 
+class Help_category(models.Model):
+
+    help_category = models.CharField(max_length=300,default='')
+    def __str__(self):
+        return f"{self.help_category}"
 
 class Requirement(models.Model):
     
     requirement_heading=models.CharField(max_length=300,default='')
     requirement_content=models.TextField()
     ngo = models.ForeignKey(Ngo, on_delete=models.CASCADE, default='')
+    category = models.ForeignKey(Help_category,on_delete=models.CASCADE, default='')
+
     # from_ngo=models.ForeignKey(Student,on_delete=models.CASCADE)
     # college=models.CharField(max_length=300,default='',choices=college_choices)
     # branch=models.CharField(max_length=300,blank='true', null='true',choices=branch_choices)
@@ -44,9 +51,5 @@ class Requirement(models.Model):
     class Meta:
         ordering=['-date_posted']
 
-class Help_category(models.Model):
 
-    help_category=models.CharField(max_length=300,default='')
-    def __str__(self):
-        return f"{self.help_category}"
 
