@@ -18,3 +18,13 @@ class UserForm(UserCreationForm):
 class LoginForm(forms.Form):
     username = forms.CharField(label = "Username")
     password = forms.CharField(label = "Password",widget = forms.PasswordInput)
+
+
+class AddRequirementForm(forms.ModelForm):
+    class Meta:
+        model = Requirement
+        fields=['requirement_heading','requirement_content']
+
+
+
+    

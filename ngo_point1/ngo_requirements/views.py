@@ -32,6 +32,9 @@ def register(request):
             user = form.save(commit=False)
             user.groups.add(group)
             user.save()
+            ngo = Ngo(user=user)
+            ngo.save()
+
             return redirect('login')    
    else:
       form=UserForm()
@@ -74,3 +77,27 @@ def donordashboard(request, username):
 @ngo_required
 def ngodashboard(request, username):
    return render(request,"ngo_requirements/ngodashboard.html")
+
+
+def addRequirement(request):
+
+    
+    
+      
+    if request.method=='POST':
+        ngo=Ngo.objects.get(user=request.user)
+        form=AddRequirementForm(request.POST)
+        if form.is_valid():
+            instance=form.save(commit=False)
+            instance.ngo=ngo
+            instance.save()
+            return redirect('home')
+        else:
+            messages.info(request, f"Error occured.")
+    else:
+        form=AddRequirementForm()
+    return render(request,'ngo_requirements/addRequirement.html',{'form':form})
+
+
+def ngoDashboard(request):
+    return render(request,'ngo_requirements/ngo_dashboard.html')

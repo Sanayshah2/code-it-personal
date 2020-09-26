@@ -1,0 +1,52 @@
+{% extends 'ngo_requirements/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% include 'ngo_requirements/ngo_sidebar.html' %}
+<script>      
+  function checkIfYes() {
+      if (document.getElementById('related').value == 'Faculty') {
+        document.getElementById('extra').style.display = '';
+        document.getElementById('branches').disabled = false;
+      } else {
+        document.getElementById('extra').style.display = 'none';
+  }
+}
+</script>
+
+<style>
+.alert-custom{
+  background-color: lightgray;
+  color:black;
+  
+    }
+    .btn{
+      background-color: #0D98BA;
+    }
+</style>    
+
+
+
+<div class="content">
+        {% if messages %}
+        {% for x in messages %}
+        <div class="alert alert-custom  fade in alert-dismissable show " style="margin-top:18px;background-color: rgb(99, 99, 99);color: whitesmoke;font-weight: bold;font-size: 15px;">
+                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true" style="font-size:20px">×</span>
+                  </button><center>{{x}}</center>
+                </div>                
+         {% endfor %}
+     {% endif %}
+
+
+        <!-- <div id="form1"> -->
+        <form method="POST">
+            {% csrf_token %}
+            {{form|crispy}}
+            <button type='submit'>Submit</button>
+        </form>
+
+    </div>
+
+
+<!-- </div>    -->
+{% endblock %}

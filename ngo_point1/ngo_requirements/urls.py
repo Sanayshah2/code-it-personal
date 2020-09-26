@@ -11,6 +11,8 @@ urlpatterns = [
     path('<username>/donordashboard/',views.donordashboard,name='donordashboard'),
     path('<username>/ngodashboard/',views.ngodashboard,name='ngodashboard'),
     path('logout/', views.logout_view, name='logout_view'),
+    path('add-requirement/', views.addRequirement, name='addRequirement'),
+    path('ngo-dashboard/', views.ngoDashboard, name='ngoDashboard'),
 
 
 

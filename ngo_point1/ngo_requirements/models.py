@@ -44,4 +44,9 @@ class Requirement(models.Model):
     class Meta:
         ordering=['-date_posted']
 
+class Help_category(models.Model):
+
+    help_category=models.CharField(max_length=300,default='')
+    def __str__(self):
+        return f"{self.help_category}"
 
