@@ -1,8 +1,7 @@
 {% extends 'ngo_requirements/base.html' %}
 {% load static %}
 {% block content %}
-<!-- {% include 'grievance/navbar.html' %} -->
-<style>
+  <style>
 @media (min-width: 768px) {
   .carousel-inner img {
     width: 100%;
@@ -60,14 +59,14 @@
       <div class="" style="padding:20px;border-radius: 15px;padding-bottom: 30px;border: 1px solid lightgray;margin-bottom: 20px;background-color: whitesmoke;">
         <h4 style="font-weight: bold;"><i class="fas fa-user-shield " style="font-size: 20px;margin-bottom: 13px;"></i> Admin Login</h4>
       <p>If you are a Management staff of a college, login here </p>
-      <a href={% url 'loginAdmin' %} style="text-decoration: none;padding: 10px;border: 1px sloid #0D98BA;background-color: #0D98BA;color: white;border-radius: 5px;">Sign up</a>
+      <a href='' style="text-decoration: none;padding: 10px;border: 1px sloid #0D98BA;background-color: #0D98BA;color: white;border-radius: 5px;">Sign up</a>
     </div>
   </div>
     <div class="col-md-6" >
       <div class="" style="padding:20px;border-radius: 15px;padding-bottom: 30px;border: 1px solid lightgray;margin-bottom: 20px;background-color: whitesmoke;">
         <h4 style="font-weight: bold;"><i class="fas fa-user-graduate " style="font-size: 20px;"></i> Student Login</h4>
       <p>If you are a student, login here</p>
-      <a href={% url 'loginStudent' %} style="text-decoration: none;padding: 10px;border: 1px solid #0D98BA;background-color: #0D98BA;color: white;border-radius: 5px;">Sign up</a>
+      <a href='' style="text-decoration: none;padding: 10px;border: 1px solid #0D98BA;background-color: #0D98BA;color: white;border-radius: 5px;">Sign up</a>
     </div>
     </div>
   </div>
@@ -99,7 +98,7 @@
     <div class='card '>
       <div class='row'>
    <div class="col-5 mb-2" style="border-right: 1px solid gray;"> <p style="font-weight: bold;">For Admin </p>
-    <a href='{% url "loginAdmin" %}' class='button_student' style="color: white;text-decoration: none">Admin</a>
+    <a href='' class='button_student' style="color: white;text-decoration: none">Admin</a>
   </div>
   <div class="col-7">
     <p><span style="font-weight: bold;">Username :</span> demoadmin<br><span style="font-weight: bold;">Password : </span> pass@123</p>
@@ -109,7 +108,7 @@
     <div class='card mt-3'>
       <div class='row'>
    <div class="col-5 mb-2" style="border-right: 1px solid gray;"> <p style="font-weight: bold;">For Student </p>
-    <a href='{% url "loginStudent" %}' class='button_student' style="color: white;text-decoration: none">Student</a>
+    <a href='' class='button_student' style="color: white;text-decoration: none">Student</a>
   </div>
   <div class="col-7">
     <p><span style="font-weight: bold;">Username :</span> demostudent<br><span style="font-weight: bold;">Password :</span> pass@123</p>

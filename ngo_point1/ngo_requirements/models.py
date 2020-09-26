@@ -22,7 +22,7 @@ class Requirement(models.Model):
     
     requirement_heading=models.CharField(max_length=300,default='')
     requirement_content=models.TextField()
-    #receiver=models.ForeignKey(Admin,on_delete=models.CASCADE)
+    ngo = models.ForeignKey(Ngo, on_delete=models.CASCADE, default='')
     # from_ngo=models.ForeignKey(Student,on_delete=models.CASCADE)
     # college=models.CharField(max_length=300,default='',choices=college_choices)
     # branch=models.CharField(max_length=300,blank='true', null='true',choices=branch_choices)
