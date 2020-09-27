@@ -29,6 +29,12 @@ class Requirement(models.Model):
     requirement_content=models.TextField()
     ngo = models.ForeignKey(Ngo, on_delete=models.CASCADE, default='')
     category = models.ForeignKey(Help_category,on_delete=models.CASCADE, default='')
+    #quantity=models.Field(max_length=300,default='')
+    quantity=models.IntegerField(max_length=999999,null=True)
+    amount=models.IntegerField(max_length=999999,null=True)
+    requirement_fulfilled=models.IntegerField(max_length=255,default=0)
+    fulfilled_by=models.ManyToManyField(Donor,related_name='fulfillers')
+
 
     # from_ngo=models.ForeignKey(Student,on_delete=models.CASCADE)
     # college=models.CharField(max_length=300,default='',choices=college_choices)

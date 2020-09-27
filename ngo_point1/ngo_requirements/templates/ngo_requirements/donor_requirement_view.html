@@ -1,0 +1,53 @@
+{% extends 'ngo_requirements/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<!-- {% include 'ngo_requirements/ngo_sidebar.html' %} -->
+<div class="content container"><br>
+    <div class="card">
+        <h3 style="font-weight: bold;padding-bottom: 15px;border-bottom: 2px solid #D10000 ;text-align: center;">Detailed View</h3><br>
+        <div class="row">
+            <div class="col-12 col-md-6"><p ><span style="font-weight: bold;">Title: </span>{{requirement.requirement_heading}}.</p></div>
+            <div class="col-12 col-md-6"><p class=""><span style="font-weight: bold;">Date posted: </span>{{requirement.date_posted|date:"M d, Y"}}.</p></div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-6"><p ><span style="font-weight: bold;">Category: </span>{{requirement.category}}.</p></div>
+            <!-- <div class="col-12 col-md-6"><p class=""><span style="font-weight: bold;">Related to: </span>.</p></div> -->
+        </div>
+
+        {% if requirement.amount %}
+        <div class="row">
+            <div class=" col-md-6 col-12"><p ><span style="font-weight: bold;">Amount Required: </span>{{requirement.amount}}.</p></div>
+            <!-- <div class="col-md-6 col-12"><p class=""><span style="font-weight: bold;">Status: </span>.</p></div> -->
+        </div>
+        {% endif %}
+
+        {% if requirement.quantity %}
+        <div class="row">
+            <div class=" col-md-6 col-12"><p ><span style="font-weight: bold;">Quantity Required: </span>{{requirement.quantity}}.</p></div>
+            <!-- <div class="col-md-6 col-12"><p class=""><span style="font-weight: bold;">Status: </span>.</p></div> -->
+        </div>
+        {% endif %}
+
+        <div class="row">
+            <div class=" col-md-6 col-12"><p ><span style="font-weight: bold;">Required currently fulfilled: </span>{{requirement.requirement_fulfilled}}.</p></div>
+            <!-- <div class="col-md-6 col-12"><p class=""><span style="font-weight: bold;">Status: </span>.</p></div> -->
+        </div>
+
+        <div class="row" style="">
+            <div class=" col-12"><p ><span style="font-weight: bold;">Cotent: </span>{{requirement.requirement_content}}.</p></div>
+            
+        </div><br>
+        <div class="" style="border-bottom: 1px solid lightgray;">
+        
+        </div><br>
+        <div class="row">
+            <button type="submit">Donate Now</button>
+        </span>
+        </p>
+        </div>
+    </div>
+
+    </div></div><br>
+    
+
+{% endblock %}

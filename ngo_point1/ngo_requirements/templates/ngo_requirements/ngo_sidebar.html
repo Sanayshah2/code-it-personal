@@ -94,11 +94,11 @@ div.content {
 </style>
 <div class="" style="">
   <div class="sidebar">
-      <h4 >Welcome, </h4>
+      <h4 >Welcome, {{user.username}}</h4>
 
-      <a  href='' class='{{studentdashboard_active}}'>Dashboard</a>
+      <a  href={% url 'ngoDashboard' %} class='{{studentdashboard_active}}'>Dashboard</a>
       <a href={% url 'addRequirement' %} class='{{addcomplain_active}}'>Add Requirement</a>
-      <a href='' class='{{scomplains_active}}'>Requirement History</a>
+      <a href= class='{{scomplains_active}}'>Requirement History</a>
       
       <a href='' class='{{sprofile_active}}'>NGO Profile</a>
       <a href='myModal69' data-toggle="modal" data-target="#myModal69">Log Out</a>
@@ -123,8 +123,8 @@ div.content {
                       Are you sure you want to Log Out?
                   </div>
                   <div class="modal-footer">
-                    <a href=ta-dismiss="modal" style="background-color: #0D98BA; border-color: #0D98BA;">Close</a>
-
+                    <a href=''ta-dismiss="modal" style="background-color: #0D98BA; border-color: #0D98BA;">Close</a>
+                    <a href={% url 'logout_view' %}><button type="button" class="btn btn-primary" style="background-color: #0D98BA; border-color: #0D98BA;">Log Out</button></a>
                   </div>
                 </div>
               </div>

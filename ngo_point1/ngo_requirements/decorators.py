@@ -8,9 +8,9 @@ def is_logged(view_func):
             if request.user.is_authenticated:
                 group = Group.objects.get(user = request.user)
                 if group.name == 'donor':   
-                    return redirect('donordashboard', username = request.user.username)
+                    return redirect('donorDashboard')
                 else:
-                    return redirect('ngodashboard', username = request.user.username)
+                    return redirect('ngoDashboard')
             else:
                 return view_func(request, *args, **kwargs)
         return wrapper_func 
@@ -35,6 +35,9 @@ def donor_required(view_func):
         else:
             return HttpResponse('You are not authorized to view this page.')
     return wrapper_func 
+
+
+
 
 # def adminprofile_required(view_func):
 #     def wrapper_func(request, *args, **kwargs):

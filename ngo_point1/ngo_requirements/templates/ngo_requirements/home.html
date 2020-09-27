@@ -25,8 +25,8 @@
     }
 
     .title{
-        font-style: italic;
-        color: darkgray;
+        font-weight: bold;
+        /* color: darkgray; */
         font-size: 24px;
         padding-top: 15px;
         padding-left: 10px;
@@ -44,8 +44,16 @@
     <div class="container">
         
         <p class="title">Some People need you...</p>
+        <!-- <div class="pl-2 form-group">
+        <select class=" form-control-sm " name='cat_select' id="cat_select" onchange="filter()">
+            <option value='all' >All</option>
+            {% for category in categories %}
+                <option value={{category.id}} >{{category.help_category}}</option>
+            {% endfor %}
+        </select>
+    </div> -->
         {% if requirements %}
-        <div class="row">
+        <div class="row" id='all'>
             
         {% for r in requirements %}
             
@@ -57,8 +65,8 @@
                             <p>{{r.requirement_content}}</p>
                             <!-- <p class='by'>by Aapka Sahara Foundation</p> -->
                             <div class="row"><div class="col-12"><p class='by'>by {{r.ngo}}</p></div></div>
-                            <div class="row"><div class="col-12"><a href="" ><p>View</p></a></div></div>
-                            <button class="btn btn-sm ">Donate Now</button>
+                            <div class="row"><div class="col-12"><a href="/donor-requirement-view/{{r.id}}/" ><p>View</p></a></div></div>
+                            <button class="btn btn-sm "><a href="/requirement-fulfillment/{{r.id}}/">Donate Now</a></button>
                         </div>
                     </div>
                 
@@ -76,10 +84,72 @@
 
         {% endif %}
 
+        {% for category in categories %}
+
+        {% if requirements %}
+        <div class="row" id='{{category.id}}'  hidden>
+            
+        {% for r in requirements %}
+            
+                {% if category.id == r.category.id  %}
+                    <div class="col-12 col-sm-6 col-md-4">
+
+                        <div class="m-3 p-4 requirement-container">
+                            <h5><b>{{r.requirement_heading}}</b></h5>
+                            <p>{{r.requirement_content}}</p>
+                            <!-- <p class='by'>by Aapka Sahara Foundation</p> -->
+                            <div class="row"><div class="col-12"><p class='by'>by {{r.ngo}}</p></div></div>
+                            <div class="row"><div class="col-12"><a href="" ><p>View</p></a></div></div>
+                            <button class="btn btn-sm ">Donate Now</button>
+                        </div>
+                    </div>
+                
+            {% endif %}
+
+        {% endfor %}
+        </div>
+        
+        {% else %}
+
+
+        <h1>No requirements</h1>
+
+
+
+        {% endif %}
+
+
+
+        {% endfor %}
+
+
     </div>
         
 
 
+<script>
+    
 
+
+    
+    
+
+
+    
+
+    function filter(){
+    
+        // var categories=[Financial,Transportation,Medical,Food];
+        var x=document.getElementById('cat_select').value;
+        console.log(typeof(x));
+        document.getElementById(''+x).hidden=false;
+        //document.getElementById('').hidden=true;
+
+        
+        
+        
+    
+        }
+</script>
 
  {% endblock content %}

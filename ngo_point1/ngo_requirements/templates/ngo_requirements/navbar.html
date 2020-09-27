@@ -32,10 +32,13 @@
               <!-- <a class="nav-link" href=>Admin Login</a> -->
             </li>
             <li class="nav-item">
-              <!-- <a class="nav-link" href= >Student Signup</a> -->
+              <a href={% url 'register' %} class="nav-link" href= >Signup</a>
             </li>
             <li class="nav-item">
-              <!-- <a class="nav-link"  href=>Student Login</a> -->
+              <a href={% url 'login' %} class="nav-link"  href=>Login</a>
+            </li>
+            <li class="nav-item">
+              <a href={% url 'logout_view' %} class="nav-link"  >Logout</a>
             </li>
             <li class="nav-item">
               <a class="nav-link"  href=>About Us</a>

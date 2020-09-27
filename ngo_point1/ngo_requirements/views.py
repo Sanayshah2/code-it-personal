@@ -12,10 +12,11 @@ from .decorators import *
 
 # Create your views here.
 def home(request):
-   
+    categories=get_all_help_categories()
     requirements = Requirement.objects.all()
     context={
         'requirements':requirements,
+        'categories':categories,
     }
 
 
@@ -28,12 +29,16 @@ def register(request):
       if form.is_valid():
             form.save()
             group = request.POST.get('group')
-            group = Group.objects.get(name = group)
+            group1 = Group.objects.get(name = group)
             user = form.save(commit=False)
-            user.groups.add(group)
+            user.groups.add(group1)
             user.save()
-            ngo = Ngo(user=user)
-            ngo.save()
+            if group == 'ngo':
+                ngo = Ngo(user=user)
+                ngo.save()
+            else:
+                donor = Donor(user=user)
+                donor.save()
 
             return redirect('login')    
    else:
@@ -70,7 +75,36 @@ def logout_view(request):
 @login_required
 @donor_required
 def donorDashboard(request):
-   return render(request,"ngo_requirements/donordashboard.html")
+   return redirect('home')
+
+
+@login_required
+@donor_required
+def requirement_fulfillment(request,rid):
+    requirement=Requirement.objects.get(id=rid)
+    print(requirement)
+    if request.method == 'POST':
+        donor=Donor.objects.get(user=request.user)
+        if requirement.amount:
+            amount=request.POST.get('amount')
+            print(amount)
+            requirement.requirement_fulfilled+=int(amount)
+        else :
+            quantity=request.POST.get('quantity')
+            requirement.requirement_fulfilled+=int(quantity)
+        requirement.fulfilled_by.add(donor)
+        requirement.save()
+        return redirect('home')
+    else:
+        return render(request,"ngo_requirements/requirement-fulfillment.html",{'r':requirement})
+        
+    
+    
+    print(requirement.amount)
+    return render(request,"ngo_requirements/requirement-fulfillment.html",{'r':requirement})
+        
+
+
 
 
 
@@ -83,11 +117,21 @@ def addRequirement(request):
         print(ngo)
         category=request.POST.get('category')
         print(category)
+
+
+
         category1=Help_category.objects.get(help_category = category)
         
         form=AddRequirementForm(request.POST)
         if form.is_valid():
             instance=form.save(commit=False)
+
+            if category == 'Financial':
+                amount=request.POST.get('amount')
+                instance.amount=amount
+            else:
+                quantity=request.POST.get('quantity')
+                instance.quantity=quantity
 
             #print(category1)
             instance.category=category1
@@ -107,8 +151,28 @@ def addRequirement(request):
 @ngo_required
 
 def ngoDashboard(request):
-    return render(request,'ngo_requirements/ngo_dashboard.html')
+    ngo=Ngo.objects.get(user=request.user)
+    requirements=Requirement.objects.filter(ngo=ngo)
+    context={
+        'requirements':requirements,
+    }
+
+    return render(request,'ngo_requirements/ngo_dashboard.html',context)
 
 def get_all_help_categories():
     categories = Help_category.objects.all()
     return categories
+
+def ngoRequirementView(request,rid):
+    requirement=Requirement.objects.get(id=rid)
+    context={
+        'requirement':requirement,
+    }
+    return render(request,'ngo_requirements/ngo_requirement_view.html',context)
+
+def donorRequirementView(request,rid):
+    requirement=Requirement.objects.get(id=rid)
+    context={
+        'requirement':requirement,
+    }
+    return render(request,'ngo_requirements/donor_requirement_view.html',context)
