@@ -30,12 +30,18 @@
         <div class="row" style="">
             <div class=" col-12"><p ><span style="font-weight: bold;">Cotent: </span>{{requirement.requirement_content}}.</p></div>
             
-        </div><br>
+        </div>
+        <div class="row" style="">
+            <div class=" col-12"><p ><span style="font-weight: bold;">Requirement Fulfilled: </span>{{requirement.requirement_fulfilled}}.</p></div>
+        </div> 
         <div class="" style="border-bottom: 1px solid lightgray;"></div><br>
         <div class="row">
-        <div class="col-12 " style=""><p ><span style="font-weight: bold;">Response: </span><span>
-            
-        </span>
+        <div class="col-12 " style=""><p ><span style="font-weight: bold;">Contributors: </span>
+        {% for r in requirement.fulfilled_by.all %}
+        <span> 
+            {{r.user.username}}
+        </span><br>
+        {% endfor %}
         </p>
         </div>
     </div>
