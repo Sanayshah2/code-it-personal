@@ -2,10 +2,10 @@
 {% load crispy_forms_tags %}
 {% block content %}
 {% include 'ngo_requirements/navbar.html' %}
-<!-- {% include 'ngo_requirements/ngo_sidebar.html' %} -->
-<div class="content container"><br>
-    <div class="card">
-        <h3 style="font-weight: bold;padding-bottom: 15px;border-bottom: 2px solid #D10000 ;text-align: center;">Detailed View</h3><br>
+
+<div class=" container"style="padding-top: 10px;">
+    <div class=" form-out" >
+        <h3 style="font-weight: bold;padding-bottom: 15px;border-bottom: 2px solid #A0E7E5;text-align: center;">Detailed View</h3><br>
         <div class="row">
             <div class="col-12 col-md-6"><p ><span style="font-weight: bold;">Title: </span>{{requirement.requirement_heading}}.</p></div>
             <div class="col-12 col-md-6"><p class=""><span style="font-weight: bold;">Date posted: </span>{{requirement.date_posted|date:"M d, Y"}}.</p></div>
@@ -42,7 +42,7 @@
         
         </div><br>
         <div class="row">
-            <button type="submit">Donate Now</button>
+            <button class="btn btn-success" type="submit"><a href="/requirement-fulfillment/{{requirement.id}}/" style="color: white;">Donate Now</a></button>
         </span>
         </p>
         </div>

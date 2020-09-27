@@ -11,8 +11,8 @@
   }
 
 </style>    
-<div class="container">
-  <div class="row justify-content-center">
+<div class="container ">
+  <div class="row justify-content-center ">
     <div class='col-12 col-md-8'>
         {% if messages %}
         {% for x in messages %}
@@ -23,8 +23,8 @@
                 </div>
          {% endfor %}
          {% endif %}
-         <div class="" style="background-color: whitesmoke;padding: 30px;margin-top: 10%;margin-bottom:10%;text-align: center;border-radius: 10px;border: 1px solid lightgray;">
-      <h2 style="padding: 15px;border-bottom: 2px solid rgb(241, 41, 41);font-weight: bold;">Create Account:</h2><br>
+         <div class="" style="background-color: whitesmoke;padding: 30px;margin-top: 10%;margin-bottom:10%;text-align: center;border: 1px solid lightgray;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+      <h2 style="padding: 15px;border-bottom: 2px solid #A0E7E5;font-weight: bold;">Create Account:</h2><br>
         <form method="POST">
             <div style="text-align: left;">
             {% csrf_token %}

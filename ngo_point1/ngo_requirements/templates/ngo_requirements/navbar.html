@@ -9,9 +9,9 @@
   </style>
   <nav class="navbar  navbar-dark sticky-top static-top" >
       <div class="container">
-        <!-- <a class="navbar-brand" href={% url 'home' %}> -->
+        <a class="navbar-brand" href={% url 'home' %}>
               <h4 style="padding-top: 5px;font-weight: bold;">Ngo<span id='X' style="font-style: bold">Point</span></h4>
-            <!-- </a> -->
+            </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" style="color: ;">
               <span class="navbar-toggler-icon" style="color: "></span>
             </button>
@@ -39,6 +39,9 @@
             </li>
             <li class="nav-item">
               <a href={% url 'login' %} class="nav-link"  href=>Login</a>
+            </li>
+            <li class="nav-item">
+              <a href={% url 'ngoDashboard' %} class="nav-link"  href=>NGO dashboard</a>
             </li>
             <li class="nav-item">
               <a href={% url 'logout_view' %} class="nav-link"  >Logout</a>

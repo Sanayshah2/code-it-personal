@@ -14,9 +14,11 @@ from .decorators import *
 def home(request):
     categories=get_all_help_categories()
     requirements = Requirement.objects.all()
+
     context={
         'requirements':requirements,
         'categories':categories,
+        
     }
 
 
@@ -94,6 +96,7 @@ def requirement_fulfillment(request,rid):
             requirement.requirement_fulfilled+=int(quantity)
         requirement.fulfilled_by.add(donor)
         requirement.save()
+        messages.info(request, f"Thankyou for your donation.")
         return redirect('home')
     else:
         return render(request,"ngo_requirements/requirement-fulfillment.html",{'r':requirement})
