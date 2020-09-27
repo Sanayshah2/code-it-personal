@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.contrib.auth.models import Group
 from .models import *
+from django.contrib import messages
 
 def is_logged(view_func):
         def wrapper_func(request, *args, **kwargs):
@@ -12,6 +13,7 @@ def is_logged(view_func):
                 else:
                     return redirect('ngoDashboard')
             else:
+                
                 return view_func(request, *args, **kwargs)
         return wrapper_func 
     

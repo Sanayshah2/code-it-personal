@@ -53,8 +53,10 @@
                 </div>
          {% endfor %}
          {% endif %}
-        
-        <p class="title">Some People need you...</p>
+         {% if user.is_authenticated %}
+        <h3 class="p-3 m-2" style="background-color:#A0E7E5;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); "><b>Welcome,{{user.username}}</b></h3>
+        {% endif %}
+        <!-- <p class="title">Some People need you...</p> -->
         <h4 class="title">Listed Requirements</h4><br>
         <!-- <div class="pl-2 form-group">
         <select class=" form-control-sm " name='cat_select' id="cat_select" onchange="filter()">
