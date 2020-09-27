@@ -22,5 +22,6 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('ngo_requirements.urls')),
+    path('restapi/',include('ngo_requirements.api.urls')),
 
 ]
